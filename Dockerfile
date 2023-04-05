@@ -3,7 +3,7 @@ FROM $BUILD_FROM
 
 ARG \
     BUILD_ARCH \
-    CAS_VERSION \
+#    CAS_VERSION \
     YQ_VERSION
 
 RUN \
@@ -17,11 +17,11 @@ RUN \
         build-base \
         go \
     \
-    && git clone -b v${CAS_VERSION} --depth 1 \
-        https://github.com/codenotary/cas \
-    && cd cas \
-    && make cas \
-    && mv cas /usr/bin/cas \
+#    && git clone -b v${CAS_VERSION} --depth 1 \
+#        https://github.com/codenotary/cas \
+#    && cd cas \
+#    && make cas \
+#    && mv cas /usr/bin/cas \
     && if [ "${BUILD_ARCH}" = "armhf" ] || [ "${BUILD_ARCH}" = "armv7" ]; then \
         wget -q -O /usr/bin/yq "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_arm"; \
     elif [ "${BUILD_ARCH}" = "aarch64" ]; then \
