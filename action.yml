@@ -21,7 +21,7 @@ runs:
 
     - shell: bash
       run: |
-        docker pull ghcr.io/nikos-el/amd64-builder:${{ steps.version.outputs.version }}
+        docker pull ghcr.io/home-assistant/amd64-builder:${{ steps.version.outputs.version }}
 
 #    - shell: bash
 #      run: |
@@ -38,7 +38,7 @@ runs:
     - shell: bash
       id: builder
       run: |
-        builder=$(docker images ghcr.io/nikos-el/amd64-builder:${{ steps.version.outputs.version }} -q)
+        builder=$(docker images ghcr.io/home-assistant/amd64-builder:${{ steps.version.outputs.version }} -q)
         echo "id=$builder" >> "$GITHUB_OUTPUT"
 
     - shell: bash
@@ -52,7 +52,7 @@ runs:
             -v ~/.docker:/root/.docker \
             -v ${{ github.workspace }}:/data \
             --env-file "${{ github.action_path }}/env_file" \
-            ghcr.io/nikos-el/amd64-builder:${{ steps.version.outputs.version }} \
+            ghcr.io/home-assistant/amd64-builder:${{ steps.version.outputs.version }} \
             ${{ inputs.args }}
 
 #    - shell: bash
@@ -63,6 +63,6 @@ runs:
 #          --filter reference="*/*" \
 #          --filter reference="*" \
 #          --filter since=${{ steps.builder.outputs.id }}
-#branding:
-#  icon: "home"
-#  color: "blue"
+branding:
+  icon: "home"
+  color: "blue"
