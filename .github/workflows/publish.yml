@@ -52,7 +52,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
+      
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: nikosel/${{ matrix.architecture }}-builder
+      
       - name: Publish ${{ matrix.architecture }} builder
         uses: ./
         with:
