@@ -1,8 +1,8 @@
 name: "Publish"
 
 on:
-  release:
-    types: [published]
+#  release:
+#    types: [published]
   push:
     branches:
       - main
@@ -28,6 +28,9 @@ jobs:
     name: Publish builder
     needs: init
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     strategy:
       fail-fast: False
       matrix:
